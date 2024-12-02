@@ -73,3 +73,36 @@ root@krunal-vostro-3681:~#
 
 
 
+
+
+
+
+
+Nov 29 17:35:14 krunal-vostro-3681 postgres_exporter[12452]: level=info ts=2024-11-29T12:05:14.409Z caller=tls_config.go:191 msg="TLS is disabled." http2=false
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: #
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: Change
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: localhost
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: to
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: the
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: live
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: database
+Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: IP
+-- Reboot --
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
