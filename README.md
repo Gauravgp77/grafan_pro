@@ -28,59 +28,19 @@ scrape_configs:
 
 
   
-oot@krunal-vostro-3681:~# journalctl -u postgres_exporter.service 
--- Logs begin at Thu 2023-03-02 18:28:05 IST, end at Mon 2024-12-02 14:41:34 IST. --
-Nov 29 17:04:34 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 17:04:38 krunal-vostro-3681 postgres_exporter[2512]: ts=2024-11-29T11:34:38.557Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 17:04:38 krunal-vostro-3681 postgres_exporter[2512]: level=info ts=2024-11-29T11:34:38.568Z caller=tls_config.go:191 msg="TLS is disabled." http2=false
-Nov 29 17:16:45 krunal-vostro-3681 systemd[1]: Stopping PostgreSQL Exporter...
-Nov 29 17:16:45 krunal-vostro-3681 systemd[1]: Stopped PostgreSQL Exporter.
-Nov 29 17:16:45 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 17:16:45 krunal-vostro-3681 postgres_exporter[9184]: ts=2024-11-29T11:46:45.506Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 17:16:45 krunal-vostro-3681 postgres_exporter[9184]: level=info ts=2024-11-29T11:46:45.531Z caller=tls_config.go:191 msg="TLS is disabled." http2=false
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: #
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: Change
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: localhost
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: to
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: the
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: live
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: database
-Nov 29 17:35:08 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: IP
-Nov 29 17:35:14 krunal-vostro-3681 systemd[1]: Stopping PostgreSQL Exporter...
-Nov 29 17:35:14 krunal-vostro-3681 systemd[1]: Stopped PostgreSQL Exporter.
-Nov 29 17:35:14 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 17:35:14 krunal-vostro-3681 postgres_exporter[12452]: ts=2024-11-29T12:05:14.408Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 17:35:14 krunal-vostro-3681 postgres_exporter[12452]: level=info ts=2024-11-29T12:05:14.409Z caller=tls_config.go:191 msg="TLS is disabled." http2=false
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: #
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: Change
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: localhost
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: to
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: the
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: live
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: database
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: IP
--- Reboot --
-Nov 29 18:11:52 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 18:11:52 krunal-vostro-3681 postgres_exporter[8640]: ts=2024-11-29T12:41:52.253Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 18:11:52 krunal-vostro-3681 postgres_exporter[8640]: ts=2024-11-29T12:41:52.254Z caller=log.go:168 level=error msg="Error running HTTP server" err="listen tcp :9187: bind: address already in use"
-Nov 29 18:11:52 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Main process exited, code=exited, status=1/FAILURE
-Nov 29 18:11:52 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Failed with result 'exit-code'.
-Nov 29 18:11:56 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 18:11:56 krunal-vostro-3681 postgres_exporter[8710]: ts=2024-11-29T12:41:56.710Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 18:11:56 krunal-vostro-3681 postgres_exporter[8710]: ts=2024-11-29T12:41:56.710Z caller=log.go:168 level=error msg="Error running HTTP server" err="listen tcp :9187: bind: address already in use"
-Nov 29 18:11:56 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Main process exited, code=exited, status=1/FAILURE
-Nov 29 18:11:56 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Failed with result 'exit-code'.
-Nov 29 18:12:16 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 18:12:16 krunal-vostro-3681 postgres_exporter[8754]: ts=2024-11-29T12:42:16.529Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 18:12:16 krunal-vostro-3681 postgres_exporter[8754]: ts=2024-11-29T12:42:16.530Z caller=log.go:168 level=error msg="Error running HTTP server" err="listen tcp :9187: bind: address already in use"
-Nov 29 18:12:16 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Main process exited, code=exited, status=1/FAILURE
-Nov 29 18:12:16 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Failed with result 'exit-code'.
-Nov 29 18:12:32 krunal-vostro-3681 systemd[1]: Started PostgreSQL Exporter.
-Nov 29 18:12:32 krunal-vostro-3681 postgres_exporter[8785]: ts=2024-11-29T12:42:32.188Z caller=log.go:168 level=info msg="Listening on address" address=:9187
-Nov 29 18:12:32 krunal-vostro-3681 postgres_exporter[8785]: ts=2024-11-29T12:42:32.189Z caller=log.go:168 level=error msg="Error running HTTP server" err="listen tcp :9187: bind: address already in use"
-Nov 29 18:12:32 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Main process exited, code=exited, status=1/FAILURE
-Nov 29 18:12:32 krunal-vostro-3681 systemd[1]: postgres_exporter.service: Failed with result 'exit-code'.
--- Reboot --
-Nov 29 18:27:32 krunal-vostro-3681 systemd[1]: Stopping PostgreSQL Exporter...
-Nov 29 18:27:32 krunal-vostro-3681 systemd[1]: Stopped PostgreSQL Exporter.
-lines 1-54
+[Unit]
+Description=PostgreSQL Exporter
+After=network.target
+
+[Service]
+User =postgres
+Group=postgres
+Type=simple
+Environment="DATA_SOURCE_NAME=postgres://postgres:postgres@192.168.6.208:5432/BaseMap_Multi?sslmode=disable"
+ExecStart=/usr/local/bin/postgres_exporter --web.listen-address="0.0.0.0:9187" --web.telemetry-path=/metrics
+
+[Install]
+WantedBy=multi-user.target
+
+
+
