@@ -45,24 +45,38 @@ WantedBy=multi-user.target
 
 
 
-root@krunal-vostro-3681:~# sudo netstat -tuln | grep 9187 
-tcp6       0      0 :::9187                 :::*                    LISTEN     
-root@krunal-vostro-3681:~# ps -l 
-F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
-4 S     0 15931  5811  0  80   0 - 16462 poll_s pts/0    00:00:00 sudo
-4 S     0 15932 15931  0  80   0 - 16285 wait   pts/0    00:00:00 su
-4 S     0 15946 15932  0  80   0 -  5724 wait   pts/0    00:00:01 bash
-4 R     0 27390 15946  0  80   0 -  7230 -      pts/0    00:00:00 ps
-root@krunal-vostro-3681:~# sudo nano /etc/systemd/system/postgres_exporter.service
-root@krunal-vostro-3681:~# sudo lsof -i :9187
-COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-postgres_ 26883 postgres    3u  IPv6 252903      0t0  TCP *:9187 (LISTEN)
-root@krunal-vostro-3681:~# ps -lh
-4     0  4787     1  20   0  16188  1968 poll_s Ss+  tty6       0:00 /sbin/agetty -o -p -- \u --noclear tty6 linux
-4     0 15931  5811  20   0  65848  4488 poll_s S    pts/0      0:00 sudo su -
-4     0 15932 15931  20   0  65140  3840 wait   S    pts/0      0:00 su -
-4     0 15946 15932  20   0  22896  5480 wait   S    pts/0      0:01 -su
-4     0 27497 15946  20   0  28920  1560 -      R+   pts/0      0:00 ps -lh
+
+
+
+
+
+root@krunal-vostro-3681:~# loki -config.file=/etc/loki/loki-config.yml
+mkdir : no such file or directory
+error initialising module: compactor
+github.com/grafana/dskit/modules.(*Manager).initModule
+	/drone/src/vendor/github.com/grafana/dskit/modules/modules.go:122
+github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+	/drone/src/vendor/github.com/grafana/dskit/modules/modules.go:92
+github.com/grafana/loki/pkg/loki.(*Loki).Run
+	/drone/src/pkg/loki/loki.go:457
+main.main
+	/drone/src/cmd/loki/main.go:110
+runtime.main
+	/usr/local/go/src/runtime/proc.go:250
+runtime.goexit
+	/usr/local/go/src/runtime/asm_amd64.s:1598
+level=warn ts=2024-12-03T10:36:06.446272186Z caller=loki.go:286 msg="per-tenant timeout not configured, using default engine timeout (\"5m0s\"). This behavior will change in the next major to always use the default per-tenant timeout (\"5m\")."
+level=info ts=2024-12-03T10:36:06.447567299Z caller=main.go:108 msg="Starting Loki" version="(version=2.8.2, branch=HEAD, revision=9f809eda7)"
+level=info ts=2024-12-03T10:36:06.447634097Z caller=modules.go:894 msg="Ruler storage is not configured; ruler will not be started."
+level=info ts=2024-12-03T10:36:06.448263367Z caller=server.go:323 http=[::]:3100 grpc=[::]:9095 msg="server listening on addresses"
+level=warn ts=2024-12-03T10:36:06.448743764Z caller=cache.go:114 msg="fifocache config is deprecated. use embedded-cache instead"
+level=warn ts=2024-12-03T10:36:06.448759713Z caller=experimental.go:20 msg="experimental feature in use" feature="In-memory (FIFO) cache - chunksembedded-cache"
+level=info ts=2024-12-03T10:36:06.448962609Z caller=table_manager.go:262 msg="query readiness setup completed" duration=827ns distinct_users_len=0
+level=info ts=2024-12-03T10:36:06.449018691Z caller=shipper.go:131 msg="starting index shipper in RW mode"
+level=info ts=2024-12-03T10:36:06.449063134Z caller=table_manager.go:134 msg="uploading tables"
+level=info ts=2024-12-03T10:36:06.449106323Z caller=shipper_index_client.go:78 msg="starting boltdb shipper in RW mode"
+level=info ts=2024-12-03T10:36:06.449164234Z caller=table_manager.go:166 msg="handing over indexes to shipper"
+level=error ts=2024-12-03T10:36:06.450933065Z caller=log.go:171 msg="error running loki" err="mkdir : no such file or directory\nerror initialising module: compactor\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/drone/src/vendor/github.com/grafana/dskit/modules/modules.go:122\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/drone/src/vendor/github.com/grafana/dskit/modules/modules.go:92\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/drone/src/pkg/loki/loki.go:457\nmain.main\n\t/drone/src/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598"
 root@krunal-vostro-3681:~# 
 
 
@@ -74,20 +88,6 @@ root@krunal-vostro-3681:~#
 
 
 
-
-
-
-
-Nov 29 17:35:14 krunal-vostro-3681 postgres_exporter[12452]: level=info ts=2024-11-29T12:05:14.409Z caller=tls_config.go:191 msg="TLS is disabled." http2=false
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: #
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: Change
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: localhost
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: to
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: the
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: live
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: database
-Nov 29 17:59:17 krunal-vostro-3681 systemd[1]: /etc/systemd/system/postgres_exporter.service:9: Invalid environment assignment, ignoring: IP
--- Reboot --
 
 
 
