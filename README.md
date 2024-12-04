@@ -535,6 +535,26 @@ Let me know how it goes!
 
 
 
+-------------------------------------*****************************************************************88
+
+
+
+grafana-server.service - Grafana instance
+   Loaded: loaded (/usr/lib/systemd/system/grafana-server.service; enabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/grafana-server.service.d
+           └─override.conf
+   Active: inactive (dead) (Result: exit-code) since Wed 2024-12-04 14:08:05 IST; 18s ago
+     Docs: http://docs.grafana.org
+  Process: 20310 ExecStart=/usr/share/grafana/bin/grafana server --config=${CONF_FILE} --pidfile=${PID_FILE_DIR}/grafana-server.pid --packaging=deb cfg:default.paths.logs=${LOG_DIR} cfg:default.paths.data
+ Main PID: 20310 (code=exited, status=1/FAILURE)
+
+Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: grafana-server.service: Service hold-off time over, scheduling restart.
+Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: grafana-server.service: Scheduled restart job, restart counter is at 4.
+Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: Stopped Grafana instance.
+lines 1-12/12 (END)
+
+
+
 
 
 
