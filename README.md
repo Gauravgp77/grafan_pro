@@ -651,6 +651,138 @@ ReadObject: expect { or , or } or n, but found <, error found in #1 byte of ...|
 
 
 
+------------------------------today 4/12/2024 -------------------------------------
+
+
+root@krunal-vostro-3681:/usr/share/grafana/plugins-bundled# grafana-cli plugins ls
+installed plugins:
+grafana-lokiexplore-app @ 1.0.4
+root@krunal-vostro-3681:/usr/share/grafana/plugins-bundled# sudo systemctl restart grafana-server.service
+root@krunal-vostro-3681:/usr/share/grafana/plugins-bundled# sudo systemctl status  grafana-server.service
+● grafana-server.service - Grafana instance
+   Loaded: loaded (/lib/systemd/system/grafana-server.service; enabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/grafana-server.service.d
+           └─override.conf
+   Active: active (running) since Wed 2024-12-04 17:28:44 IST; 7s ago
+ Main PID: 32556 (grafana)
+    Tasks: 23 (limit: 4915)
+   CGroup: /system.slice/grafana-server.service
+           └─32556 grafana server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini --pidfile=/var/run/grafana/grafana-server.pid
+
+Dec 04 17:28:44 hp grafana-server[32556]: logger=ngalert.scheduler t=2024-12-04T17:28:44.826980099+05:30 level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+Dec 04 17:28:44 hp grafana-server[32556]: logger=ticker t=2024-12-04T17:28:44.827022031+05:30 level=info msg=starting first_tick=2024-12-04T17:28:50+05:30
+Dec 04 17:28:44 hp grafana-server[32556]: logger=http.server t=2024-12-04T17:28:44.82855852+05:30 level=info msg="HTTP Server Listen" address=[::]:3001 protocol=http subUrl= socket=
+Dec 04 17:28:45 hp grafana-server[32556]: logger=grafana-apiserver t=2024-12-04T17:28:45.050769635+05:30 level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+Dec 04 17:28:45 hp grafana-server[32556]: logger=grafana-apiserver t=2024-12-04T17:28:45.051190292+05:30 level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+Dec 04 17:28:45 hp grafana-server[32556]: logger=grafana-apiserver t=2024-12-04T17:28:45.052075401+05:30 level=info msg="Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager"
+Dec 04 17:28:45 hp grafana-server[32556]: logger=provisioning.dashboard t=2024-12-04T17:28:45.068514115+05:30 level=info msg="starting to provision dashboards"
+Dec 04 17:28:45 hp grafana-server[32556]: logger=provisioning.dashboard t=2024-12-04T17:28:45.068550781+05:30 level=info msg="finished to provision dashboards"
+Dec 04 17:28:45 hp grafana-server[32556]: logger=grafana.update.checker t=2024-12-04T17:28:45.392409908+05:30 level=info msg="Update check succeeded" duration=565.71883ms
+Dec 04 17:28:45 hp grafana-server[32556]: logger=plugins.update.checker t=2024-12-04T17:28:45.459397632+05:30 level=info msg="Update check succeeded" duration=632.676724ms
+root@krunal-vostro-3681:/usr/share/grafana/plugins-bundled# cd 
+root@krunal-vostro-3681:~# grafana-cli plugins update grafana-lokiexplore-app
+INFO [12-04|17:29:32] Starting Grafana                         logger=settings version=11.3.1 commit=9225f4a1cbd1cfe8b69f1aa2d62309a9700533a5 branch=HEAD compiled=2024-12-04T17:29:32+05:30
+INFO [12-04|17:29:32] Config loaded from                       logger=settings file=/usr/share/grafana/conf/defaults.ini
+INFO [12-04|17:29:32] Config loaded from                       logger=settings file=/etc/grafana/grafana.ini
+INFO [12-04|17:29:32] Config overridden from command line      logger=settings arg="default.paths.data=/var/lib/grafana"
+INFO [12-04|17:29:32] Config overridden from command line      logger=settings arg="default.paths.logs=/var/log/grafana"
+INFO [12-04|17:29:32] Config overridden from command line      logger=settings arg="default.paths.plugins=/var/lib/grafana/plugins"
+INFO [12-04|17:29:32] Config overridden from command line      logger=settings arg="default.paths.provisioning=/etc/grafana/provisioning"
+INFO [12-04|17:29:32] Target                                   logger=settings target=[all]
+INFO [12-04|17:29:32] Path Home                                logger=settings path=/usr/share/grafana
+INFO [12-04|17:29:32] Path Data                                logger=settings path=/usr/share/grafana/data
+INFO [12-04|17:29:32] Path Logs                                logger=settings path=/usr/share/grafana/data/log
+INFO [12-04|17:29:32] Path Plugins                             logger=settings path=/usr/share/grafana/data/plugins
+INFO [12-04|17:29:32] Path Provisioning                        logger=settings path=/usr/share/grafana/conf/provisioning
+INFO [12-04|17:29:32] App mode production                      logger=settings
+✔ grafana-lokiexplore-app is up to date 
+root@krunal-vostro-3681:~# grafana-cli plugins remove grafana-lokiexplore-app
+Removing plugin: grafana-lokiexplore-app
+Please restart Grafana after installing or removing plugins. Refer to Grafana documentation for instructions if necessary.
+
+root@krunal-vostro-3681:~# sudo systemctl restart grafana-server.service
+root@krunal-vostro-3681:~# sudo systemctl restart grafana
+root@krunal-vostro-3681:~# sudo systemctl status  grafana
+● grafana.service - Grafana
+   Loaded: loaded (/etc/systemd/system/grafana.service; enabled; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Wed 2024-12-04 17:30:14 IST; 3s ago
+  Process: 560 ExecStart=/usr/share/grafana/bin/grafana-server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana (code=exited, status=1/FAILURE)
+ Main PID: 560 (code=exited, status=1/FAILURE)
+
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Service hold-off time over, scheduling restart.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Scheduled restart job, restart counter is at 5.
+Dec 04 17:30:14 hp systemd[1]: Stopped Grafana.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Start request repeated too quickly.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Failed with result 'exit-code'.
+Dec 04 17:30:14 hp systemd[1]: Failed to start Grafana.
+root@krunal-vostro-3681:~# journalctl -u grafana.service -f
+-- Logs begin at Thu 2023-03-02 18:28:05 IST. --
+Dec 04 17:30:14 hp grafana-server[560]: Error: ✗ *api.HTTPServer run error: failed to open listener on address 0.0.0.0:3001: listen tcp 0.0.0.0:3001: bind: address already in use
+Dec 04 17:30:14 hp grafana-server[560]: logger=grafana-apiserver t=2024-12-04T17:30:14.774096578+05:30 level=info msg="StorageObjectCountTracker pruner is exiting"
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Main process exited, code=exited, status=1/FAILURE
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Failed with result 'exit-code'.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Service hold-off time over, scheduling restart.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Scheduled restart job, restart counter is at 5.
+Dec 04 17:30:14 hp systemd[1]: Stopped Grafana.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Start request repeated too quickly.
+Dec 04 17:30:14 hp systemd[1]: grafana.service: Failed with result 'exit-code'.
+Dec 04 17:30:14 hp systemd[1]: Failed to start Grafana.
+^C^C
+root@krunal-vostro-3681:~# sudo netstat -tuln | grep 3000
+root@krunal-vostro-3681:~# /usr/share/grafana/bin/grafana-server --config=/etc/grafana/grafana.ini --homepath=/usr/share/grafana
+Deprecation warning: The standalone 'grafana-server' program is deprecated and will be removed in the future. Please update all uses of 'grafana-server' to 'grafana server'
+Grafana server is running with elevated privileges. This is not recommended
+INFO [12-04|17:31:38] Starting Grafana                         logger=settings version=11.3.1 commit=9225f4a1cbd1cfe8b69f1aa2d62309a9700533a5 branch=HEAD compiled=2024-12-04T17:31:38+05:30
+INFO [12-04|17:31:38] Config loaded from                       logger=settings file=/usr/share/grafana/conf/defaults.ini
+INFO [12-04|17:31:38] Config loaded from                       logger=settings file=/etc/grafana/grafana.ini
+INFO [12-04|17:31:38] Target                                   logger=settings target=[all]
+INFO [12-04|17:31:38] Path Home                                logger=settings path=/usr/share/grafana
+INFO [12-04|17:31:38] Path Data                                logger=settings path=/usr/share/grafana/data
+INFO [12-04|17:31:38] Path Logs                                logger=settings path=/usr/share/grafana/data/log
+INFO [12-04|17:31:38] Path Plugins                             logger=settings path=/usr/share/grafana/data/plugins
+INFO [12-04|17:31:38] Path Provisioning                        logger=settings path=/usr/share/grafana/conf/provisioning
+INFO [12-04|17:31:38] App mode production                      logger=settings
+INFO [12-04|17:31:38] FeatureToggles                           logger=featuremgmt nestedFolders=true influxdbBackendMigration=true cloudWatchRoundUpEndTime=true lokiMetricDataplane=true logsExploreTableVisualisation=true lokiQuerySplitting=true ssoSettingsApi=true managedPluginsInstall=true cloudWatchCrossAccountQuerying=true angularDeprecationUI=true recoveryThreshold=true dataplaneFrontendFallback=true logsInfiniteScrolling=true publicDashboards=true dashgpt=true groupToNestedTableTransformation=true tlsMemcached=true exploreMetrics=true kubernetesPlaylists=true lokiStructuredMetadata=true autoMigrateXYChartPanel=true correlations=true promQLScope=true alertingInsights=true alertingSimplifiedRouting=true dashboardSceneSolo=true cloudWatchNewLabelParsing=true notificationBanner=true prometheusConfigOverhaulAuth=true alertingNoDataErrorExecution=true topnav=true transformationsVariableSupport=true dashboardScene=true awsAsyncQueryCaching=true formatString=true accessControlOnCall=true publicDashboardsScene=true logRowsPopoverMenu=true dashboardSceneForViewers=true lokiQueryHints=true openSearchBackendFlowEnabled=true addFieldFromCalculationStatFunctions=true logsContextDatasourceUi=true recordedQueriesMulti=true panelMonitoring=true prometheusMetricEncyclopedia=true annotationPermissionUpdate=true pinNavItems=true transformationsRedesign=true prometheusAzureOverrideAudience=true
+INFO [12-04|17:31:38] Connecting to DB                         logger=sqlstore dbtype=sqlite3
+INFO [12-04|17:31:39] Locking database                         logger=migrator
+INFO [12-04|17:31:39] Starting DB migrations                   logger=migrator
+INFO [12-04|17:31:39] migrations completed                     logger=migrator performed=0 skipped=611 duration=420.161µs
+INFO [12-04|17:31:39] Unlocking database                       logger=migrator
+INFO [12-04|17:31:39] Envelope encryption state                logger=secrets enabled=true current provider=secretKey.v1
+INFO [12-04|17:31:39] Restored cache from database             logger=plugin.angulardetectorsprovider.dynamic duration=294.593µs
+INFO [12-04|17:31:39] Loading plugins...                       logger=plugin.store
+ERROR[12-04|17:31:39] Could not register plugin                logger=plugins.registration pluginId=xychart error="plugin xychart is already registered"
+ERROR[12-04|17:31:39] Could not initialize plugin              logger=plugins.initialization pluginId=xychart error="plugin xychart is already registered"
+INFO [12-04|17:31:39] Plugin registered                        logger=plugins.registration pluginId=grafana-lokiexplore-app
+INFO [12-04|17:31:39] Plugins loaded                           logger=plugin.store count=55 duration=51.902537ms
+INFO [12-04|17:31:39] Query Service initialization             logger=query_data
+INFO [12-04|17:31:39] Live Push Gateway initialization         logger=live.push_http
+INFO [12-04|17:31:39] Applying new configuration to Alertmanager logger=ngalert.notifier.alertmanager org=1 configHash=d2c56faca6af2a5772ff4253222f7386
+INFO [12-04|17:31:39] Running in alternative execution of Error/NoData mode logger=ngalert.state.manager
+INFO [12-04|17:31:39] registering usage stat providers         logger=infra.usagestats.collector usageStatsProvidersLen=2
+INFO [12-04|17:31:39] starting to provision alerting           logger=provisioning.alerting
+INFO [12-04|17:31:39] finished to provision alerting           logger=provisioning.alerting
+INFO [12-04|17:31:39] Storage starting                         logger=grafanaStorageLogger
+INFO [12-04|17:31:39] Warming state cache for startup          logger=ngalert.state.manager
+INFO [12-04|17:31:39] Starting MultiOrg Alertmanager           logger=ngalert.multiorg.alertmanager
+ERROR[12-04|17:31:39] Stopped background service               logger=server service=*api.HTTPServer reason="failed to open listener on address 0.0.0.0:3001: listen tcp 0.0.0.0:3001: bind: address already in use"
+ERROR[12-04|17:31:39] Update check failed                      logger=grafana.update.checker error="failed to get stable version from grafana.com: Get \"https://grafana.com/api/grafana/versions/stable\": *api.HTTPServer run error: failed to open listener on address 0.0.0.0:3001: listen tcp 0.0.0.0:3001: bind: address already in use" duration=1.118663ms
+INFO [12-04|17:31:39] Closing tracing                          logger=tracing
+ERROR[12-04|17:31:39] Unable to fetch orgIds                   logger=ngalert.state.manager error="context canceled"
+INFO [12-04|17:31:39] State cache has been initialized         logger=ngalert.state.manager states=0 duration=13.001598ms
+INFO [12-04|17:31:39] Starting scheduler                       logger=ngalert.scheduler tickInterval=10s maxAttempts=1
+INFO [12-04|17:31:39] starting                                 logger=ticker first_tick=2024-12-04T17:31:40+05:30
+WARN [12-04|17:31:39] Failed to get usage metrics              logger=serviceaccounts error="context canceled"
+WARN [12-04|17:31:39] Failed to delete orphaned provisioned dashboards logger=provisioning.dashboard err="context canceled"
+ERROR[12-04|17:31:39] Server lock for secret migration already exists logger=secret.migration
+INFO [12-04|17:31:39] starting to provision dashboards         logger=provisioning.dashboard
+INFO [12-04|17:31:39] finished to provision dashboards         logger=provisioning.dashboard
+ERROR[12-04|17:31:39] Error downloading plugin manifest keys   logger=plugin.signature.key_retriever error="kv get: context canceled"
+INFO [12-04|17:31:39] Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+INFO [12-04|17:31:39] Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+INFO [12-04|17:31:39] Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+Error: ✗ *api.HTTPServer run error: failed to open listener on address 0.0.0.0:3001: listen tcp 0.0.0.0:3001: bind: address already in use
+root@krunal-vostro-3681:~# 
 
 
 
