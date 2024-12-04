@@ -1,4 +1,4 @@
-
+8
 global:
   scrape_interval: 15s # Default scrape interval.
   evaluation_interval: 15s # Default evaluation interval.
@@ -552,6 +552,93 @@ Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: grafana-server.service: Service h
 Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: grafana-server.service: Scheduled restart job, restart counter is at 4.
 Dec 04 14:08:05 krunal-vostro-3681 systemd[1]: Stopped Grafana instance.
 lines 1-12/12 (END)
+
+
+
+
+
+
+
+The error indicates that the Grafana server is failing to start. Here's how you can troubleshoot and resolve the issue to start the Grafana instance:
+
+1. Check Logs for Detailed Errors
+Run the following command to view detailed logs for the Grafana service:
+
+bash
+Copy code
+sudo journalctl -u grafana-server -xe
+This will give more context on why the service is failing.
+
+2. Verify Configuration File
+Ensure that the configuration file /etc/grafana/grafana.ini exists and is properly configured.
+
+Check if the file exists:
+
+bash
+Copy code
+ls -l /etc/grafana/grafana.ini
+If missing, re-install or copy the default config:
+
+bash
+Copy code
+sudo cp /usr/share/grafana/conf/defaults.ini /etc/grafana/grafana.ini
+Validate the file permissions:
+
+bash
+Copy code
+sudo chown grafana:grafana /etc/grafana/grafana.ini
+3. Correct ExecStart in the Service File
+Edit the service file to ensure it points to the correct paths and arguments. Use:
+
+bash
+Copy code
+sudo nano /lib/systemd/system/grafana-server.service
+Update the ExecStart directive:
+
+ini
+Copy code
+ExecStart=/usr/share/grafana/bin/grafana-server \
+  --homepath=/usr/share/grafana \
+  --config=/etc/grafana/grafana.ini \
+  --pidfile=/var/run/grafana/grafana-server.pid
+Then reload systemd:
+
+bash
+Copy code
+sudo systemctl daemon-reload
+4. Fix File Permissions
+Ensure the Grafana directories have the correct permissions:
+
+bash
+Copy code
+sudo chown -R grafana:grafana /var/lib/grafana /etc/grafana /usr/share/grafana
+5. Restart Grafana
+Try restarting the Grafana server:
+
+bash
+Copy code
+sudo systemctl restart grafana-server
+6. Check Grafana Status
+Verify if the service is running:
+
+bash
+Copy code
+sudo systemctl status grafana-server
+7. Manually Test the Grafana Binary
+If the service still fails, try running Grafana manually to check for errors:
+
+bash
+Copy code
+/usr/share/grafana/bin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini
+Additional Notes:
+Ensure no port conflicts on 3000 (Grafana's default port). Check using:
+bash
+Copy code
+sudo netstat -tuln | grep 3000
+Let me know if you need further help!
+
+
+
 
 
 
