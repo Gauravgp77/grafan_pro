@@ -789,6 +789,29 @@ root@krunal-vostro-3681:~#
 
 
 
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+root@hp:/etc# curl http://localhost:9187/metrice
+<html>
+	<head><title>Postgres exporter</title></head>
+	<body>
+	<h1>Postgres exporter</h1>
+	<p><a href='/metrics'>Metrics</a></p>
+	</body>
+	</html>
+	root@hp:/etc# ^C
+
+
+
+ReadObject: expect { or , or } or n, but found <, error found in #1 byte of ...|<html> <he|..., bigger context ...|<html> <head><title>Postgres exporter</title></hea|... - There was an error returned querying the Prometheus API.
+
+
+
+
 
 
 
