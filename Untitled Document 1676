@@ -1,0 +1,28 @@
+
+
+
+
+prometheus.remote_write "default" {
+  endpoint {
+    url = "http://localhost:9090/api/prom/push"
+  }
+
+  endpoint {
+    url = "https://prometheus-us-central1.grafana.net/api/prom/push"
+
+    // Get basic authentication based on environment variables.
+    basic_auth {
+      username = sys.env("<REMOTE_WRITE_USERNAME>")
+      password = sys.env("<REMOTE_WRITE_PASSWORD>")
+    }
+  }
+}
+
+prometheus.scrape "example" {
+  // Collect metrics from the default listen address.
+  targets = [{
+    __address__ = "127.0.0.1:12345",
+  }]
+
+  forward_to = [prometheus.remote_write.default.receiver]
+}

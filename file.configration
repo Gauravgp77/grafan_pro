@@ -1,0 +1,16 @@
+root@krunal-vostro-3681:~# sudo vi /etc/systemd/system/node_exporter.service
+root@krunal-vostro-3681:~# sudo vi /etc/prometheus/prometheus.yml
+root@krunal-vostro-3681:~# nano  /etc/prometheus/prometheus.yml
+root@krunal-vostro-3681:~# nano /etc/prometheus/node-exporter.yml
+root@krunal-vostro-3681:~# nano /etc/prometheus/node-exporter.yml
+root@krunal-vostro-3681:~# nano /etc/prometheus/prometheus_config.yml
+root@krunal-vostro-3681:~# sudo vi /etc/prometheus/prometheus.yml
+root@krunal-vostro-3681:~# nano /etc/systemd/system/node-exporter.service
+root@krunal-vostro-3681:~# 
+root@krunal-vostro-3681:~# sudo vi /etc/systemd/system/node_exporter.service
+root@krunal-vostro-3681:~# sudo nano  /etc/systemd/system/node_exporter.service
+root@krunal-vostro-3681:~# sudo nano  /etc/systemd/system/node_exporter.service
+root@krunal-vostro-3681:~# sudo nano  /etc/prometheus/prometheus.yml
+root@krunal-vostro-3681:~# 
+
+

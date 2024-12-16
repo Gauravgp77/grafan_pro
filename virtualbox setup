@@ -1,0 +1,19 @@
+1.sudo apt-get autoremove purge virtualbox*
+
+
+2.sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+
+3.echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+sudo apt update
+
+
+4.sudo apt install virtualbox-7.0
+
+
+5.sudo /sbin/vboxconfig
+
+6.sudo reboot
+
+7.virtualbox

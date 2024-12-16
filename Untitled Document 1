@@ -1,0 +1,80 @@
+Create a `prometheus.yml` file with the following configuration:
+```yaml
+scrape_configs:
+  - job_name: 'spring'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['HOST:PORT']
+```
+Here, we're telling Prometheus to:
+
+* Scrape metrics from the `/actuator/prometheus` endpoint on the `HOST:PORT` target.
+* Use the `spring` job name for this scrape configuration.
+
+**Step 2: Configure Actuator**
+
+You'll need to enable Actuator's metrics endpoints in your Java application. You can do this by adding the following dependency to your `pom.xml` (if you're using Maven) or `build.gradle` file (if 
+you're using Gradle):
+```xml
+<!-- Maven -->
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-actuator-config</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>io.micrometer</groupId>
+  <artifactId>micrometer-actuator-metrics</artifactId>
+</dependency>
+
+<!-- Gradle -->
+dependencies {
+  implementation 'io.micrometer:micrometer-actuator-config'
+  implementation 'io.micrometer:micrometer-actuator-metrics'
+}
+```
+Then, in your Java application, enable the Actuator endpoints by adding the following configuration:
+```properties
+# application.properties
+management.endpoints.web.exposure.include=*
+```
+This will expose all Actuator endpoints, including the metrics endpoint.
+
+**Step 3: Configure Grafana**
+
+Create a new data source in Grafana:
+
+1. Log in to your Grafana instance.
+2. Click on **Data Sources** in the left-hand menu.
+3. Click **Create Data Source**.
+4. Select **Prometheus** as the data source type.
+5. Enter a name for your data source (e.g., "Spring Metrics").
+6. Configure the data source URL to point to your Prometheus instance:
+```bash
+http://your-prometheus-instance:9090
+```
+7. Click **Save and Apply**.
+
+Create a new dashboard in Grafana:
+
+1. Log in to your Grafana instance.
+2. Click on **Dashboards** in the left-hand menu.
+3. Click **Create Dashboard**.
+4. Add a new panel to the dashboard using the **Add Panel** button.
+5. Select **Prometheus** as the panel type.
+6. Configure the panel settings:
+	* Data source: Use the "Spring Metrics" data source you created earlier.
+	* Query: `spring.metrics.gauge:/actuator/prometheus` (or use a different query that works for your application)
+7. Click **Save and Apply**.
+
+Your dashboard should now be populated with metrics from your Java application!
+
+Here's an example `prometheus.yml` file to get you started:
+```yaml
+scrape_configs:
+  - job_name: 'spring'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['localhost:8080']
+```
+This configuration tells Prometheus to scrape metrics from the `/actuator/prometheus` endpoint on `localhost:8080`. You can modify this configuration to suit your needs

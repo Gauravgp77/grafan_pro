@@ -1,0 +1,79 @@
+krunal@hp:~$ curl http://192.168.6.108:9090/api/v1/query?query=up
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"up","instance":"192.168.6.108:9100","job":"node_exporter"},"value":[1734340226.816,"1"]},{"metric":{"__name__":"up","instance":"localhost:9090","job":"prometheus"},"value":[1734340226.816,"1"]},{"metric":{"__name__":"up","instance":"localhost:9188","job":"postgresql_exporter"},"value":[1734340226.816,"1"]}]}}krunal@hp:~$ ^C
+krunal@hp:~$ sudo ufw status
+Status: inactive
+krunal@hp:~$ sudo ufw allow 9090
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+krunal@hp:~$ sudo tail -f /var/log/grafana/grafana.log
+there is  not  response 
+
+krunal@hp:/var/log$ curl http://192.168.6.108:9090/api/v1/query?query=up
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"up","instance":"192.168.6.108:9100","job":"node_exporter"},"value":[1734340369.086,"1"]},{"metric":{"__name__":"up","instance":"localhost:9090","job":"prometheus"},"value":[1734340369.086,"1"]},{"metric":{"__name__":"up","instance":"localhost:9188","job":"postgresql_exporter"},"value":[1734340369.086,"1"]}]}}krunal@hp:/var/log$ ^C
+krunal@hp:/var/log$ sudo lsof -i :3000
+COMMAND   PID    USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+grafana  7009 grafana    6u  IPv6 4756638      0t0  TCP hp:3000->hp:36476 (ESTABLISHED)
+grafana  7009 grafana    8u  IPv6 5014266      0t0  TCP hp:3000->hp:59522 (ESTABLISHED)
+grafana  7009 grafana   10u  IPv6 3997298      0t0  TCP hp:3000->hp:33092 (ESTABLISHED)
+grafana  7009 grafana   17u  IPv6 3984295      0t0  TCP *:3000 (LISTEN)
+chrome  30713  krunal   32u  IPv4 4744909      0t0  TCP hp:36476->hp:3000 (ESTABLISHED)
+chrome  30713  krunal   55u  IPv4 5043604      0t0  TCP hp:59522->hp:3000 (ESTABLISHED)
+chrome  30713  krunal   60u  IPv4 4000903      0t0  TCP hp:33092->hp:3000 (ESTABLISHED)
+krunal@hp:/var/log$ sudo systemctl stop grafana-server
+krunal@hp:/var/log$ sudo systemctl start grafana-server
+krunal@hp:/var/log$ sudo -u grafana /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini
+INFO [12-16|14:43:21] Starting Grafana                         logger=settings version=11.4.0 commit=b58701869e1a11b696010a6f28bd96b68a2cf0d0 branch=HEAD compiled=2024-12-16T14:43:21+05:30
+INFO [12-16|14:43:21] Config loaded from                       logger=settings file=/usr/share/grafana/conf/defaults.ini
+INFO [12-16|14:43:21] Config loaded from                       logger=settings file=/etc/grafana/grafana.ini
+INFO [12-16|14:43:21] Target                                   logger=settings target=[all]
+INFO [12-16|14:43:21] Path Home                                logger=settings path=/usr/share/grafana
+INFO [12-16|14:43:21] Path Data                                logger=settings path=/var/lib/grafana
+INFO [12-16|14:43:21] Path Logs                                logger=settings path=/usr/share/grafana/data/log
+INFO [12-16|14:43:21] Path Plugins                             logger=settings path=/usr/share/grafana/data/plugins
+INFO [12-16|14:43:21] Path Provisioning                        logger=settings path=/usr/share/grafana/conf/provisioning
+INFO [12-16|14:43:21] App mode production                      logger=settings
+INFO [12-16|14:43:21] FeatureToggles                           logger=featuremgmt accessControlOnCall=true pinNavItems=true influxdbBackendMigration=true recoveryThreshold=true topnav=true managedPluginsInstall=true lokiMetricDataplane=true logsExploreTableVisualisation=true ssoSettingsApi=true nestedFolders=true publicDashboardsScene=true awsAsyncQueryCaching=true addFieldFromCalculationStatFunctions=true publicDashboards=true logsContextDatasourceUi=true lokiQueryHints=true logRowsPopoverMenu=true angularDeprecationUI=true formatString=true alertingNoDataErrorExecution=true cloudWatchNewLabelParsing=true openSearchBackendFlowEnabled=true prometheusAzureOverrideAudience=true tlsMemcached=true dashboardSceneSolo=true dashboardSceneForViewers=true logsInfiniteScrolling=true annotationPermissionUpdate=true prometheusMetricEncyclopedia=true cloudWatchCrossAccountQuerying=true dashboardScene=true alertingSimplifiedRouting=true kubernetesPlaylists=true exploreMetrics=true recordedQueriesMulti=true panelMonitoring=true correlations=true promQLScope=true autoMigrateXYChartPanel=true dataplaneFrontendFallback=true alertingInsights=true lokiStructuredMetadata=true groupToNestedTableTransformation=true transformationsRedesign=true transformationsVariableSupport=true notificationBanner=true lokiQuerySplitting=true cloudWatchRoundUpEndTime=true prometheusConfigOverhaulAuth=true dashgpt=true
+INFO [12-16|14:43:21] Connecting to DB                         logger=sqlstore dbtype=sqlite3
+INFO [12-16|14:43:21] Locking database                         logger=migrator
+INFO [12-16|14:43:21] Starting DB migrations                   logger=migrator
+INFO [12-16|14:43:21] migrations completed                     logger=migrator performed=0 skipped=611 duration=422.759µs
+INFO [12-16|14:43:21] Unlocking database                       logger=migrator
+INFO [12-16|14:43:21] Envelope encryption state                logger=secrets enabled=true current provider=secretKey.v1
+INFO [12-16|14:43:21] Restored cache from database             logger=plugin.angulardetectorsprovider.dynamic duration=254.519µs
+INFO [12-16|14:43:21] Loading plugins...                       logger=plugin.store
+ERROR[12-16|14:43:21] Could not register plugin                logger=plugins.registration pluginId=xychart error="plugin xychart is already registered"
+ERROR[12-16|14:43:21] Could not initialize plugin              logger=plugins.initialization pluginId=xychart error="plugin xychart is already registered"
+INFO [12-16|14:43:21] Plugin registered                        logger=plugins.registration pluginId=grafana-lokiexplore-app
+INFO [12-16|14:43:21] Plugins loaded                           logger=plugin.store count=55 duration=53.728239ms
+INFO [12-16|14:43:21] Query Service initialization             logger=query_data
+INFO [12-16|14:43:21] Live Push Gateway initialization         logger=live.push_http
+INFO [12-16|14:43:21] Applying new configuration to Alertmanager logger=ngalert.notifier.alertmanager org=1 configHash=d2c56faca6af2a5772ff4253222f7386
+INFO [12-16|14:43:21] Running in alternative execution of Error/NoData mode logger=ngalert.state.manager
+INFO [12-16|14:43:21] registering usage stat providers         logger=infra.usagestats.collector usageStatsProvidersLen=2
+INFO [12-16|14:43:21] starting to provision alerting           logger=provisioning.alerting
+INFO [12-16|14:43:21] finished to provision alerting           logger=provisioning.alerting
+INFO [12-16|14:43:21] Storage starting                         logger=grafanaStorageLogger
+INFO [12-16|14:43:21] Warming state cache for startup          logger=ngalert.state.manager
+INFO [12-16|14:43:21] Starting MultiOrg Alertmanager           logger=ngalert.multiorg.alertmanager
+ERROR[12-16|14:43:21] Stopped background service               logger=server service=*api.HTTPServer reason="failed to open listener on address 0.0.0.0:3000: listen tcp 0.0.0.0:3000: bind: address already in use"
+INFO [12-16|14:43:21] Closing tracing                          logger=tracing
+ERROR[12-16|14:43:21] Update check failed                      logger=grafana.update.checker error="failed to get stable version from grafana.com: Get \"https://grafana.com/api/grafana/versions/stable\": *api.HTTPServer run error: failed to open listener on address 0.0.0.0:3000: listen tcp 0.0.0.0:3000: bind: address already in use" duration=3.850542ms
+ERROR[12-16|14:43:21] Failed to lock and execute cleanup of expired auth token logger=auth error="context canceled"
+ERROR[12-16|14:43:22] Stopped secret migration service         logger=secret.migration service=*migrations.DataSourceSecretMigrationService reason="context canceled"
+ERROR[12-16|14:43:22] Failed to release the lock               logger=infra.lockservice error="context canceled"
+ERROR[12-16|14:43:22] Unable to fetch orgIds                   logger=ngalert.state.manager error="context canceled"
+INFO [12-16|14:43:22] State cache has been initialized         logger=ngalert.state.manager states=0 duration=140.521595ms
+INFO [12-16|14:43:22] Starting scheduler                       logger=ngalert.scheduler tickInterval=10s maxAttempts=1
+INFO [12-16|14:43:22] starting                                 logger=ticker first_tick=2024-12-16T14:43:30+05:30
+ERROR[12-16|14:43:22] error collecting background metrics      logger=publicdashboards.metric err="context canceled"
+ERROR[12-16|14:43:22] Failed to get last sent time             logger=infra.usagestats error="context canceled"
+WARN [12-16|14:43:22] Failed to delete orphaned provisioned dashboards logger=provisioning.dashboard err="context canceled"
+INFO [12-16|14:43:22] starting to provision dashboards         logger=provisioning.dashboard
+INFO [12-16|14:43:22] finished to provision dashboards         logger=provisioning.dashboard
+INFO [12-16|14:43:22] Adding GroupVersion iam.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+INFO [12-16|14:43:22] Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+INFO [12-16|14:43:22] Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager logger=grafana-apiserver
+Error: ✗ *api.HTTPServer run error: failed to open listener on address 0.0.0.0:3000: listen tcp 0.0.0.0:3000: bind: address already in use
+krunal@hp:/var/log$ 
+
+

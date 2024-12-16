@@ -1,0 +1,160 @@
+krunal@hp:~$ sudo systemctl restart grafana-server
+[sudo] password for krunal: 
+krunal@hp:~$ sudo ufw status
+Status: inactive
+krunal@hp:~$ sudo ufw allow 9090
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+krunal@hp:~$ clear
+krunal@hp:~$ sudo tail -f /var/log/grafana/grafana.log
+^C
+krunal@hp:~$ sudo -u grafana /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.i
+ERROR[12-16|15:11:57] failed to parse "/etc/grafana/grafana.i": open /etc/grafana/grafana.i: no such file or directory logger=settings
+krunal@hp:~$ sudo rm -rf /var/lib/grafana/plugins/xychart
+krunal@hp:~$ sudo systemctl restart graf		ana-server  
+
+
+krunal@hp:~$ sudo cat  /etc/grafana/grafana.ini
+##################### Grafana Configuration Defaults #####################
+#
+# Do not modify this file in grafana installs
+#
+
+# possible values : production, development
+app_mode = production
+
+# instance name, defaults to HOSTNAME environment variable value or hostname if HOSTNAME var is empty
+instance_name = ${HOSTNAME}
+
+#################################### Paths ###############################
+[paths]
+# Path to where grafana can store temp files, sessions, and the sqlite3 db (if that is used)
+data = data
+data = /var/lib/grafana
+logs = /var/log/grafana
+plugins = /var/lib/grafana/plugins
+provisioning = /etc/grafana/provisioning      
+
+
+# Temporary files in `data` directory older than given duration will be removed
+temp_data_lifetime = 24h
+
+# Directory where grafana can store logs
+logs = data/log
+
+# Directory where grafana will automatically scan and look for plugins
+plugins = data/plugins
+
+# folder that contains provisioning config files that grafana will apply on startup and while running.
+provisioning = conf/provisioning
+
+#################################### Server ##############################
+[server]
+# Protocol (http, https, h2, socket)
+protocol = http
+http_port = 3000
+domain = 192.168.6.108
+root_url = http://192.168.6.108:3000
+http_addr = 0.0.0.0  # Ensure this is set to 0.0.0.0 to bind to all interfaces
+
+# Minimum TLS version allowed. By default, this value is empty. Accepted values are: TLS1.2, TLS1.3. If nothing is set TLS1.2 would be taken
+min_tls_version = ""
+
+# The ip address to bind to, empty will bind to all interfaces
+http_addr =
+
+# The http port to use
+http_port = 3000
+
+# The public facing domain name used to access grafana from a browser
+domain = localhostkrunal@hp:~$ sudo systemctl restart grafana-server
+[sudo] password for krunal: 
+krunal@hp:~$ sudo ufw status
+Status: inactive
+krunal@hp:~$ sudo ufw allow 9090
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+krunal@hp:~$ clear
+krunal@hp:~$ sudo tail -f /var/log/grafana/grafana.log
+^C
+krunal@hp:~$ sudo -u grafana /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.i
+ERROR[12-16|15:11:57] failed to parse "/etc/grafana/grafana.i": open /etc/grafana/grafana.i: no such file or directory logger=settings
+krunal@hp:~$ sudo rm -rf /var/lib/grafana/plugins/xychart
+krunal@hp:~$ sudo systemctl restart grafana-server  
+
+
+krunal@hp:~$ sudo cat  /etc/grafana/grafana.ini
+##################### Grafana Configuration Defaults #####################
+#
+# Do not modify this file in grafana installs
+#
+
+# possible values : production, development
+app_mode = production
+
+# instance name, defaults to HOSTNAME environment variable value or hostname if HOSTNAME var is empty
+instance_name = ${HOSTNAME}
+
+#################################### Paths ###############################
+[paths]
+# Path to where grafana can store temp files, sessions, and the sqlite3 db (if that is used)
+data = data
+data = /var/lib/grafana
+logs = /var/log/grafana
+plugins = /var/lib/grafana/plugins
+provisioning = /etc/grafana/provisioning      
+
+
+# Temporary files in `data` directory older than given duration will be removed
+temp_data_lifetime = 24h
+
+# Directory where grafana can store logs
+logs = data/log
+
+# Directory where grafana will automatically scan and look for plugins
+plugins = data/plugins
+
+# folder that contains provisioning config files that grafana will apply on startup and while running.
+provisioning = conf/provisioning
+
+#################################### Server ##############################
+[server]
+# Protocol (http, https, h2, socket)
+protocol = http
+http_port = 3000
+domain = 192.168.6.108
+root_url = http://192.168.6.108:3000
+http_addr = 0.0.0.0  # Ensure this is set to 0.0.0.0 to bind to all interfaces
+
+# Minimum TLS version allowed. By default, this value is empty. Accepted values are: TLS1.2, TLS1.3. If nothing is set TLS1.2 would be taken
+min_tls_version = ""
+
+# The ip address to bind to, empty will bind to all interfaces
+http_addr =
+
+# The http port to use
+http_port = 3000
+
+# The public facing domain name used to access grafana from a browser
+domain = localhost
+
+# Redirect to co
+
+# Redirect to correct domain if host header does not match domain
+# Prevents DNS rebinding attacks
+enforce_domain = false
+
+# The full public facing url
+root_url = %(protocol)s://%(domain)s:%(http_port)s/
+
+
+
+
+
+sudo ufw allow 9090
+Status: inactive
+krunal@hp:~$ sudo ufw allow 9090
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+
+

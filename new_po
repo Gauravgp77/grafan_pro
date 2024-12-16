@@ -1,0 +1,24 @@
+#################################### Logging ##########################
+[log]
+# The log level. Valid values are: debug, info, warn, error, critical
+level = info
+
+# The log format. Valid values are: console, json
+format = console
+
+# The path to the log file. If set to "", logs will be written to stdout.
+# If set to a file path, logs will be written to that file.
+# If set to "auto", logs will be written to stdout if the service is running in the foreground, and to a file if running as a service.
+logfile = /var/log/grafana/grafana.log
+
+
+
+
+ curl http://192.168.6.108:9090/api/v1/query?query=up 
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"up","instance":"192.168.6.108:9100","job":"node_exporter"},"value":[1734340839.893,"1"]},{"metric":{"__name__":"up","instance":"localhost:9090","job":"prometheus"},"value":[1734340839.893,"1"]},{"metric":{"__name__":"up","instance":"localhost:9188","job":"postgresql_exporter"},"value":[1734340839.893,"1"]}]}}
+
+
+
+sudo vi /etc/grafana/grafana.ini
+
+

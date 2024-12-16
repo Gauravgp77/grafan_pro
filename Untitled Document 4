@@ -1,0 +1,4 @@
+krunal@hp:~$ sudo -u grafana /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.i
+ERROR[12-16|15:19:23] failed to parse "/etc/grafana/grafana.i": open /etc/grafana/grafana.i: no such file or directory logger=settings
+krunal@hp:~$ 
+

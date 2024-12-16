@@ -1,0 +1,15 @@
+[Unit]
+Description=PostgreSQL Exporter
+After=network.target
+
+[Service]
+User =postgres
+Group=postgres
+Type=simple
+Environment="DATA_SOURCE_NAME=postgres://postgres:postgres@192.168.6.208:5432/BaseMap_Multi?sslmode=disable"
+ExecStart=/usr/local/bin/postgres_exporter --web.listen-address="0.0.0.0:9188" --web.telemetry-path=/metrics
+
+[Install]
+WantedBy=multi-user.target
+
+
