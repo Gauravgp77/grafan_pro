@@ -1,4 +1,4 @@
-8
+
 global:
   scrape_interval: 15s # Default scrape interval.
   evaluation_interval: 15s # Default evaluation interval.
@@ -815,6 +815,66 @@ ReadObject: expect { or , or } or n, but found <, error found in #1 byte of ...|
 
 
 https://www.howtoforge.com/how-to-monitor-postgresql-with-prometheus-and-grafana/
+
+
+
+
+
+
+
+
+
+How to install ultrasurf VPN install in ubuntu
+ChatGPT said:
+ChatGPT
+UltraSurf VPN is primarily designed for Windows and does not have an official Linux version. However, you can still use it on Ubuntu through Wine or consider alternative VPN options. Here's how to install UltraSurf on Ubuntu:
+
+Method 1: Using Wine
+Install Wine (if not already installed):
+
+bash
+Copy code
+sudo apt update
+sudo apt install wine
+Download UltraSurf:
+
+Go to the official website: https://ultrasurf.us
+Download the .exe file.
+Run UltraSurf with Wine:
+
+Navigate to the folder where the .exe file is downloaded:
+bash
+Copy code
+cd ~/Downloads
+Run UltraSurf:
+bash
+Copy code
+wine u.exe
+Use UltraSurf:
+
+The interface should open. Configure it as needed.
+Method 2: Alternative VPNs for Ubuntu
+If Wine doesn't work well, consider native Linux VPNs:
+
+OpenVPN:
+bash
+Copy code
+sudo apt install openvpn
+ProtonVPN (free tier available):
+Install the CLI tool:
+bash
+Copy code
+sudo apt update
+sudo apt install -y protonvpn-cli
+protonvpn-cli login
+UltraSurf might not perform optimally in a Wine environment. Native VPNs are more reliable for Linux.
+
+
+
+
+
+
+
 
 
 
