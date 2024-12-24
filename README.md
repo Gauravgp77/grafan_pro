@@ -877,6 +877,8 @@ https://chatgpt.com/share/67695d04-c680-800b-b03c-b9782c0cb36c
 
 https://hf.co/chat/r/Xw-6ERw?leafId=75bce2a9-5a1e-4122-904a-aa96a11b6aad
 
+https://hf.co/chat/r/69_qq8O?leafId=c7ba3da3-28fa-4773-8bfa-c4abc2d56dc0
+
 
 
 
