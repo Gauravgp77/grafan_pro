@@ -875,6 +875,9 @@ UltraSurf might not perform optimally in a Wine environment. Native VPNs are mor
 https://chatgpt.com/share/67695d04-c680-800b-b03c-b9782c0cb36c
 
 
+https://hf.co/chat/r/Xw-6ERw?leafId=75bce2a9-5a1e-4122-904a-aa96a11b6aad
+
+
 
 
 
