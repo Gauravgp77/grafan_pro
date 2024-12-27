@@ -1,0 +1,93 @@
+krunal@hp:/etc/systemd/system$ cat prometheus-postgres-exporter.service 
+[Unit]
+Description=Prometheus PostgreSQL Exporter
+After=network.target
+
+[Service]
+User=postgres
+Group=postgres
+ExecStart=/usr/local/bin/postgres_exporter --web.listen-address=:9187 --web.telemetry-path=/metrics
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+
+krunal@hp:/etc/systemd/system$ cat postgres_exporter.service
+[Unit]
+Description=PostgreSQL Exporter
+After=network.target
+
+[Service]
+User =postgres
+Group=postgres
+Type=simple
+Environment="DATA_SOURCE_NAME=postgres://postgres:postgres@192.168.6.208:5432/BaseMap_Multi?sslmode=disable"
+ExecStart=/usr/local/bin/postgres_exporter --web.listen-address="0.0.0.0:9188" --web.telemetry-path=/metrics
+
+[Install]
+WantedBy=multi-user.target    
+
+
+
+	x`
+
+
+
+
+
+krunal@hp:/opt/postgres_exporter$ ls
+postgres_exporter.yml
+
+krunal@hp:/opt/postgres_exporter$ cd ..
+krunal@hp:/opt$ ls 
+brave.com  containerd  extras.ubuntu.com  google  postgres_exporte  postgres_exporter  promtail  SeqriteIcon
+
+
+krunal@hp:/opt$ cd  postgres_exporte
+krunal@hp:/opt/postgres_exporte$ ls 
+postgres_exporter.env  postgres_exporter.yml
+
+krunal@hp:/opt/postgres_exporte$ cat postgres_exporter.env 
+DATA_SOURCE_NAME="postgresql://postgres:postgres@192.168.6.208:5432/?sslmode=disable"
+EXTENDED_QUERY_MODE=true
+
+krunal@hp:/opt/postgres_exporte$ cat postgres_exporter.yml
+auth_modules:
+  default: # Set this to any name you want
+    type: userpass
+    userpass:
+      username: postgres
+      password: postgres
+    options:
+      # options become key=value parameters of the DSN
+      sslmode: disable
+
+krunal@hp:/opt/postgres_exporte$ cd ..
+krunal@hp:/opt$ ls 
+brave.com  containerd  extras.ubuntu.com  google  postgres_exporte  postgres_exporter  promtail  SeqriteIcon
+
+krunal@hp:/opt$ cd  postgres_exporter 
+krunal@hp:/opt/postgres_exporter$ ls 
+postgres_exporter.yml
+krunal@hp:/opt/postgres_exporter$ cat postgres_exporter.yml 
+
+auth_modules:
+  default: # Set this to any name you want
+    type: userpass
+    userpass:
+      username: postgres
+      password: postgres
+    options:
+      # options become key=value parameters of the DSN
+      sslmode: disable
+krunal@hp:/opt/postgres_exporter$ 
+
+
+
+
+
