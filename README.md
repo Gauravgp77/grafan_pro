@@ -883,6 +883,11 @@ https://hf.co/chat/r/69_qq8O?leafId=c7ba3da3-28fa-4773-8bfa-c4abc2d56dc0
 
 
 
+https://simplifyingtechcode.wordpress.com/2023/05/21/configuring-sonarqube-using-springboot-microservice/
+
+
+
+
 
 
 
