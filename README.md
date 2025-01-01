@@ -890,6 +890,9 @@ https://simplifyingtechcode.wordpress.com/2023/05/21/configuring-sonarqube-using
 https://devonblog.com/continuous-delivery/unleashing-the-power-of-log-management-with-grafana-loki/
 
 
+https://www.youtube.com/watch?v=8_Xt9vchlpY&t=2s&ab_channel=Engineerhoon  ---youtube
+
+
 
 
 
