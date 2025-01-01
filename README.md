@@ -151,7 +151,7 @@ sudo chown -R loki_user:loki_group /loki
 8. Restart Loki
 Restart the Loki service after any configuration changes:
 bash
-Copy code
+Copy codehttps://devonblog.com/continuous-delivery/unleashing-the-power-of-log-management-with-grafana-loki/
 systemctl restart loki
 systemctl status loki
 9. Cross-check Promtail
@@ -885,6 +885,9 @@ https://hf.co/chat/r/69_qq8O?leafId=c7ba3da3-28fa-4773-8bfa-c4abc2d56dc0
 
 https://simplifyingtechcode.wordpress.com/2023/05/21/configuring-sonarqube-using-springboot-microservice/
 
+
+
+https://devonblog.com/continuous-delivery/unleashing-the-power-of-log-management-with-grafana-loki/
 
 
 
